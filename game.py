@@ -1,7 +1,21 @@
 from time import sleep
 from random import randint
 
-print("""___  ___              _           _   _____                    _             _   
+class Character:
+    def __init__(self, name):
+        self.name = name
+        self.health = 100
+        self.damage = 20
+
+    def attack(self, enemy):
+        enemy.health -= self.damage
+        print(f"\033[31m{self.name} атаковал {enemy.name}, нанеся 20 единиц урона. Здоровье врага: {enemy.health}")
+
+
+unit1 = Character("Sub-Zero")
+unit2 = Character("Scorpion")
+
+print("""\033[35m___  ___              _           _   _____                    _             _   
 |  \/  |             | |         | | /  __ \                  | |           | |  
 | .  . |  ___   _ __ | |_   __ _ | | | /  \/  ___   _ __ ___  | |__    __ _ | |_ 
 | |\/| | / _ \ | '__|| __| / _` || | | |     / _ \ | '_ ` _ \ | '_ \  / _` || __|
@@ -15,7 +29,7 @@ print("""___  ___              _           _   _____                    _       
 """)
 sleep(2)
 
-print(""".........;................................... 
+print("""\033[31m.........;................................... 
 ......,:++:.,,............................... 
 ......+;:+,.;,,.............................. 
 ..,;:,+:.;;;;:+,....,;?SS*,,................. 
@@ -55,7 +69,7 @@ print(
     "Оба воина приготовились к непримиримой битве до последнего вздоха, зная, что только один из них сможет покинуть арену живым.")
 sleep(1)
 
-print("""______  _____  _____  _   _  _____ 
+print("""\033[35m______  _____  _____  _   _  _____ 
 |  ___||_   _||  __ \| | | ||_   _|
 | |_     | |  | |  \/| |_| |  | |  
 |  _|    | |  | | __ |  _  |  | |  
@@ -66,21 +80,6 @@ print("""______  _____  _____  _   _  _____
 """)
 sleep(1)
 
-
-class Character:
-    def __init__(self, name):
-        self.name = name
-        self.health = 100
-        self.damage = 20
-
-    def attack(self, enemy):
-        enemy.health -= self.damage
-        print(f"{self.name} атаковал {enemy.name}, нанеся 20 единиц урона. Здоровье врага: {enemy.health}")
-
-
-unit1 = Character("Sub-Zero")
-unit2 = Character("Scorpion")
-
 while unit1.health > 0 and unit2.health > 0:
     if randint(0, 1) == 1:
         unit1.attack(unit2)
@@ -88,6 +87,7 @@ while unit1.health > 0 and unit2.health > 0:
         unit2.attack(unit1)
 
 if unit1.health <= 0:
-    print(f"{unit2.name} одержал победу!")
+    print(f"\033[36m{unit2.name} одержал победу!")
 else:
-    print(f"{unit1.name} одержал победу!")
+    print(f"\033[36m{unit1.name} одержал победу!")
+    
